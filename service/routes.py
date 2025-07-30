@@ -57,21 +57,19 @@ def create_accounts():
         jsonify(message), status.HTTP_201_CREATED, {"Location": location_url}
     )
 
+
 ######################################################################
 # LIST ALL ACCOUNTS
 ######################################################################
-
-# ... place you code here to LIST accounts ...
 @app.route('/accounts', methods=['GET'])
 def list_accounts():
     accounts = Account.all()  # As per hints, use Account.all()
     return jsonify([account.serialize() for account in accounts]), status.HTTP_200_OK
 
+
 ######################################################################
 # READ AN ACCOUNT
 ######################################################################
-
-# ... place you code here to READ an account ...
 @app.route('/accounts/<int:account_id>', methods=['GET'])
 def read_account(account_id):
     account = Account.find(account_id)  # As per hints, use Account.find()
@@ -79,11 +77,10 @@ def read_account(account_id):
         abort(status.HTTP_404_NOT_FOUND)
     return account.serialize(), status.HTTP_200_OK
 
+
 ######################################################################
 # UPDATE AN EXISTING ACCOUNT
 ######################################################################
-
-# ... place you code here to UPDATE an account ...
 @app.route('/accounts/<int:account_id>', methods=['PUT'])
 def update_account(account_id):
     account = Account.find(account_id)  # As per hints, use Account.find()
@@ -94,17 +91,17 @@ def update_account(account_id):
     account.update()  # As per hints, update in database
     return account.serialize(), status.HTTP_200_OK
 
+
 ######################################################################
 # DELETE AN ACCOUNT
 ######################################################################
-
-# ... place you code here to DELETE an account ...
 @app.route('/accounts/<int:account_id>', methods=['DELETE'])
 def delete_account(account_id):
     account = Account.find(account_id)  # As per hints, use Account.find()
     if account is not None:
         account.delete()  # As per hints, delete if found
     return '', status.HTTP_204_NO_CONTENT  # Empty body as per hints
+
 
 ######################################################################
 #  U T I L I T Y   F U N C T I O N S
